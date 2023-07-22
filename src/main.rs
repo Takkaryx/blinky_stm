@@ -28,8 +28,8 @@ async fn main(spawner: Spawner) {
 
     // Configure the button pin (if needed) and obtain handler.
     // On the Nucleo FR401 there is a button connected to pin PC13.
-    let button = Input::new(p.PC13, Pull::None);
-    let mut button = ExtiInput::new(button, p.EXTI13);
+    let button = Input::new(p.PA0, Pull::None);
+    let mut button = ExtiInput::new(button, p.EXTI0);
 
     // Create and initialize a delay variable to manage delay loop
     let mut del_var = 2000;
@@ -38,14 +38,14 @@ async fn main(spawner: Spawner) {
     BLINK_MS.store(del_var, Ordering::Relaxed);
 
     // Spawn LED blinking task
-    spawner.spawn(led_task(p.PA5.degrade())).unwrap();
+    spawner.spawn(led_task(p.PD15.degrade())).unwrap();
 
     loop {
         // Check if button got pressed
         button.wait_for_rising_edge().await;
 
         // If button pressed decrease the delay value
-        del_var = del_var - 300;
+        del_var -= 300;
         // If updated delay value drops below 300 then reset it back to starting value
         if del_var < 500 {
             del_var = 2000;

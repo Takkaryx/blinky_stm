@@ -7,7 +7,6 @@ edition = "2021"
 
 [dependencies]
 embassy-sync = { version = "0.2.0", git = "https://github.com/embassy-rs/embassy"}
-#embassy-executor = { version = "0.2.0", git = "https://github.com/embassy-rs/embassy", features = ["nightly", "integrated-timers"] }
 embassy-executor = { version = "0.2.0", git = "https://github.com/embassy-rs/embassy", features = ["nightly", "arch-cortex-m", "executor-thread", "executor-interrupt", "integrated-timers"]}
 embassy-time = { version = "0.1.0", git = "https://github.com/embassy-rs/embassy", features = ["unstable-traits", "tick-hz-32_768"] }
 embassy-stm32 = { version = "0.1.0", git = "https://github.com/embassy-rs/embassy", features = ["nightly", "unstable-traits", "stm32f429zi", "unstable-pac", "memory-x", "time-driver-any", "exti"]  }
